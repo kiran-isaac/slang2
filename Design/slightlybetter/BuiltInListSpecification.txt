@@ -1,0 +1,15 @@
+(<-): Take
+  Definately:
+  a <- [i] : would remove the ith item from the focused object and put it into the object a
+  a <- [i, j] : would remove the ith to jth and from the focused object place them on the object a
+  
+  Maybe:
+  
+
+(->): Insert
+  Definately:
+  a -> : push onto the end of the object
+  a -> [i] : push into the ith position
+
+  Maybe:
+  a -> [i, j] : takes j-i items from the top of a and puts them onto the focused object

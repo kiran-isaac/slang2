@@ -1,7 +1,0 @@
-List:
-  -- Will delete ith element and put it in A 
-  a <- this[i]
-  -- WIll insert an element at i and shift everything else to the right
-  a -> this[i]
-
-  peek()
