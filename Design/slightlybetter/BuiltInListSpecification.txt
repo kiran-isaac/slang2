@@ -1,15 +1,30 @@
-(<-): Take
+The internal list that all classes are made from should have the following 3 operations:
+  1. Take
+  2. Insert
+  3. Peek
+
+<- : Take
   Definately:
-  a <- [i] : would remove the ith item from the focused object and put it into the object a
-  a <- [i, j] : would remove the ith to jth and from the focused object place them on the object a
+  a <- [i] : would remove the ith item from focus and put it into the object a
+  a <- [i, j] : would remove the ith to jth and from focus place them on the object a
   
   Maybe:
-  
+  a <- : Top value from focus is removed and put on a
+  a <- [..] : All values from focus are removed and put on a. Not sure how I feel about the syntax
 
-(->): Insert
+-> : Insert
   Definately:
   a -> : push onto the end of the object
   a -> [i] : push into the ith position
 
   Maybe:
-  a -> [i, j] : takes j-i items from the top of a and puts them onto the focused object
+  a -> [i, j] : takes j-i items from the top of a and puts them onto focus
+
+= : Peek (Like take but obviously does not mutate focus. Perhaps dont use equals)
+  Definately:
+    a = : the top value from focus is copied and put on a
+    a = [i] : the ith value from focus is copied and put on a
+    a = [i, j] : the ith to jth values from focus are copied and put on a
+
+  Maybe:
+    a = [..] : all values from focus are copied and put on a. Also not sure how I feel about the syntax
