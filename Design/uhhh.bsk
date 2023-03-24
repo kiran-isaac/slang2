@@ -1,0 +1,18 @@
+focus IntStack test
+
+1;
+2;
+3;
+
+IntStack of Int can {
+  sum() {
+    focus Int out = 0
+    for i {
+      out = out + i
+    }
+  }
+
+  plusplus() {
+    
+  }
+}

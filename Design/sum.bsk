@@ -1,0 +1,33 @@
+focus [String] coefs
+readLine();
+readLine();
+readLine();
+
+String of char can {
+  Int toInt() {
+    focus bool allDigits;
+    for c {
+      Char.isDigit(c);
+    }
+
+    fold(&&, true);
+  }
+}
+
+focus Int n
+coefs.map((String s) -> Int s.toInt())
+
+Bool of bool can {
+  Bool fold(A -> B -> B f; B b) {
+
+  }
+}
+
+B fold(A -> B -> B f, B b) {
+  focus B out = b
+  for a {
+    out = f(a, out)
+  }
+  return out
+}
+

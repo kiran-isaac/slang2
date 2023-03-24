@@ -1,0 +1,87 @@
+Queue Y of Y can {
+  @override push(Y y) {
+    last = this
+    this = stack.rest
+  }
+
+  @override Y pop() {
+    focus stack Y tmp
+    
+    while default.size() > 1 {
+      default.pop()
+    }
+
+    stack Y out = default.pop()
+    default = tmp.reverse()
+    
+    return out
+  }
+
+  @override Queue Z map(Y -> Z f) with Z {
+    focus Queue Z out
+
+    while default.size() > 0 {
+      f(default.pop())
+    }
+  }
+}
+
+Tree T of (Tree T | T) can {
+  T DepthFirstTraverse() {
+    focus stack T out
+
+    for e in default {
+      e.left().DepthFirstTraverse()
+      e.right()
+    }
+  }
+}
+
+A | B of builtin can {
+  A left()
+  B right()
+}
+
+A -> B of builtin can {
+  B apply(A a)
+}
+
+X Int x = 1 2
+
+private Fib of Int {
+  @override push() {
+    peek(1) + peek(2)
+  }
+}
+-- Private automatically removes push and pop access from outside
+-- Can be bypassed but dont
+
+String of Char
+
+IOBuffer of only (Queue Char) can {
+  newline() {'\n'}
+
+  print() {
+    focus peek()
+    for char {
+      puts(Char)
+    }
+  }
+
+  pushLine(String s) {
+    focus peek()
+    pushAll(s)
+    '\n'
+  }
+}
+
+Box Y of only Y {
+  Box Z fmap(Y -> Z f) with Z {
+    Box (f top)
+  }
+}
+
+focus IOBuffer x
+-- or alternatively
+IOBuffer x
+focus x

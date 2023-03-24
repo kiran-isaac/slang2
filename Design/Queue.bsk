@@ -1,0 +1,45 @@
+Queue A of private A can {
+  push(A a) {a -> this}
+
+  pop() {
+    A a <- [size() - 1]
+    return a
+  }
+}
+
+Stack A of private A can {
+  push(A a) {a -> this}
+
+  pop() {
+    A a <- this[0]
+    return a
+  }
+}
+
+List A from Stack of A
+
+private HashSet A from List of (String, A, String, A) can {
+  put(A a) {
+    push(hash_64(a))
+    push(a)
+  }
+
+  Bool contains(A a) {
+    focus PatternRange range (this, 0)
+    String hash = hash_64(a)
+    for i {
+      if (this[i] == hash_64(a)) {
+        return true
+      }
+    }
+  }
+}
+
+Dict A B from List of private (HashSet A, List B) can {
+  put(A a, B b) {
+    push(a)
+    push(b)
+  }
+}
+
+String from List char of char

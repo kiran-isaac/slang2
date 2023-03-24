@@ -1,0 +1,50 @@
+Queue A of A can {
+  @override push(A a) {
+    last = this
+    this = stack.rest
+  }
+
+  @override A pop() {
+    focus stack A tmp
+    
+    while default.size() > 1 {
+      default.pop()
+    }
+
+    stack A out = default.pop()
+    default = tmp.reverse()
+    
+    return out
+  }
+}
+
+Box A of only (A : val) can {
+  new(A a) {a}
+  A get() {val}
+}
+
+Matrix A of ([A]) can {
+  @override push(A a) {
+    last = this
+    this = stack.rest
+  }
+
+  @override A pop() {
+    focus stack A tmp
+    
+    while default.size() > 1 {
+      default.pop()
+    }
+
+    stack A out = default.pop()
+    default = tmp.reverse()
+    
+    return out
+  }
+}
+
+Vector2 of only (double : x, double : y) can {
+  x() {peek(0)}
+  y() {peek(1)}
+  scale(double : s) {Vector2(x * s, y * s)}
+}

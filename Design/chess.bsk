@@ -1,0 +1,11 @@
+PieceType of _;
+King from PieceType of ();
+Queen from PieceType of ();
+Rook from PieceType of ();
+Bishop from PieceType of ();
+Knight from PieceType of ();
+Pawn from PieceType of ();
+
+Piece of only (PieceType, bool) can {
+  
+}

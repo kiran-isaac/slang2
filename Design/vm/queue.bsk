@@ -1,0 +1,31 @@
+class Queue Y of Y can {
+  @override push(Y y) {
+    reverse()
+    y
+    reverse()
+  }
+
+  @override Y pop() {
+    focus stack Y tmp
+    
+    while default.size() > 1 {
+      default.pop()
+    }
+
+    stack Y out = default.pop()
+    default = tmp.reverse()
+    
+    return out
+  }
+
+  @override Queue Z map(Y -> Z f) with Z {
+    focus Queue Z out
+
+    while default.size() > 0 {
+      f(default.pop())
+    }
+  }
+}
+
+type String = Queue Char
+

@@ -1,0 +1,24 @@
+puts()
+
+Stack (pattern):
+  static new():
+    return new empty stack
+
+  push():
+    Add next in pattern
+
+
+  pop():
+
+  pushPattern():
+    Push all of pattern
+
+  popPattern():
+    Pop whole pattern and return limited stack
+
+  static only():
+    return a new limited stack with the same pattern
+
+classes:
+  Inherit from stack
+  only: Calls all constructors for the type recursively. The stack cannot be pushed to or popped, and the size is constant
