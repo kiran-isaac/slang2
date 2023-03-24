@@ -13,3 +13,4 @@ pub mod heap;
 pub mod interpreter;
 pub mod bytecode;
 pub mod error;
+pub mod list;

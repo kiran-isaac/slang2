@@ -1,23 +1,24 @@
+pub mod value;
+pub mod pattern;
+
 use crate::runtime::error::*;
 use std::ptr::NonNull;
 
-pub mod value;
+pub use pattern::Pattern;
+pub use value::Value;
 
-/// A list containing values and a reference to its class.
+/// A list containing values
 pub struct List {
   val : Vec<Value>, 
-  structure: Pattern,
+  class : ClassPtr,
   accepting: i32
 }
-
-/// A pointer to a list. These are managed by the runtime.
-pub struct ListPtr(NonNull<List>);
 
 impl List {
   fn take(&mut self, into : List, index : usize) {
     throw(Error::TypeError("nope".to_string()));
     
-    let pattern = self.structure.types;
-    let giving = pattern[index % pattern.len()];
+    // let pattern = self.structure.types;
+    // let giving = pattern[index % pattern.len()];
   }
 }
