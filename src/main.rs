@@ -17,6 +17,6 @@ fn main() {
   // is basically just instantiation
   let mut test_list = List::new(table.get_class("".to_string(), "Box(int)".to_string()).unwrap());
 
-  test_list.push_primitive(PrimitiveValue::Float(10));
-
+  test_list.push_primitive(PrimitiveValue::Int(10));
+  test_list.push_primitive(PrimitiveValue::Int(20));
 }

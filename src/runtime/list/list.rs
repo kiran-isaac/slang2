@@ -22,14 +22,20 @@ impl List<'_> {
   pub fn push_primitive(&mut self, val : PrimitiveValue) {
     if self.accepting == self.class.pattern.types.len() {
       if self.class.pattern.only {
-        Error::TypeError(format!("Trying to append value {} to object with pattern {} values", val.to_string(), self.class.pattern.to_string())).throw();
+        Error::TypeError(format!("Trying to push primitive value {} to FULL object with pattern {} values", val.to_string(), self.class.pattern.to_string())).throw();
       } else {
         self.accepting = 0;
       }
     }
 
     let expect = &self.class.pattern.types[self.accepting.clone()];
-    println!("Expecting {}, got {}, {}", expect.to_string(), val.to_string(), val.is_of_type(expect));
+    print!("Expecting {}, got {}", expect.to_string(), val.to_string());
+    if val.is_of_type(expect) {
+      println!(" - OK");
+    } else {
+      println!(" - ERROR");
+      Error::TypeError(format!("Trying to push primitive value {} to object with pattern {} values", val.to_string(), self.class.pattern.to_string())).throw();
+    }
 
     self.accepting += 1;
     self.val.push(val);
