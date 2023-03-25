@@ -17,9 +17,10 @@ pub struct Class {
 pub struct ClassPtr (NonNull<Class>);
 
 impl ClassPtr {
-  pub fn new(class : &mut Class) -> Self {
-    Self(NonNull::new(class).unwrap())
+  pub fn new(class : Class) -> Self {
+    Self(NonNull::new(Box::into_raw(Box::new(class))).unwrap())
   }
+
 
   pub fn get(&self) -> &Class {
     unsafe { self.0.as_ref() }

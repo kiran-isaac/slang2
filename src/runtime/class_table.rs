@@ -12,8 +12,14 @@ impl ClassTable {
     }
   }
 
-  pub fn add_class(&mut self, namespace : String, class: &mut Class) {
+  pub fn add_class(&mut self, namespace : String, class: Class) {
       self.classes.insert(namespace + "." + &class.name, ClassPtr::new(class));
+  }
+
+  pub fn add_classes(&mut self, namespace : String, classes : [Class; 4]) {
+    for mut class in classes {
+      self.add_class(namespace.to_string(), class);
+    }
   }
 
   pub fn get_class(&self, namespace : String, name : String) -> Option<ClassPtr> {
