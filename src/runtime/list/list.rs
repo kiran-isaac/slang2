@@ -39,4 +39,37 @@ impl List {
     self.accepting += 1;
     self.val.push(val);
   }
+
+  fn remove(&mut self, start : usize, end : usize) {
+    self.val.drain(start..end);
+
+    let start = start.clone() % self.class.get().pattern.types.len();
+
+    for i in start..end {
+      let expect = &self.class.get().pattern.types[i % self.class.get().pattern.types.len()];
+      let got = &self.val[i];
+      if !got.is_of_type(expect) {
+        if start == end {
+          Error::TypeError(format!("Removing element {} from a '{}' with pattern {} causes a pattern mismatch. Try peeking, or removing a whole segment"
+                                   , start, self.class.get().name, self.class.get().pattern.to_string())).throw();
+        } else {
+          Error::TypeError(format!("Removing elements [{}, {}] from a '{}' with pattern {} causes a pattern mismatch. Try peeking, or removing a whole segment"
+                                   , start, end, self.class.get().name, self.class.get().pattern.to_string())).throw();
+        }
+      }
+    }
+  }
+
+  fn peek(&self, start : usize, end : usize) -> List {
+    let mut list = List::new(self.class.clone());
+      for i in start..end {
+        list.push_primitive(self.val[i].clone());
+      }
+      list
+    }
+  }
+
+  pub fn take(&self, other : &mut List, index : usize)  {
+
+  }
 }

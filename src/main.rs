@@ -46,5 +46,7 @@ fn main() {
   let mut list2 = List::new(table.get_class("".to_string(), "[int]".to_string()).unwrap());
 
   list1.push_primitive(PrimitiveValue::Int(10));
-  list2.push_primitive(PrimitiveValue::Int(20));
+  list1.push_primitive(PrimitiveValue::Int(20));
+  
+  list2.ta
 }
