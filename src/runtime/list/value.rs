@@ -1,28 +1,36 @@
+use crate::runtime::list::list::ListPtr;
 use crate::types::Type;
 
 /// A value that can be stored on a list.
-pub enum PrimitiveValue {
+#[derive(Clone, Copy)]
+#[allow(dead_code)]
+pub enum Value {
+  List(ListPtr),
   Int(i64),
   Float(f64),
   Bool(bool)
 }
 
-impl ToString for PrimitiveValue {
+impl ToString for Value {
   fn to_string(&self) -> String {
     match self {
-      PrimitiveValue::Int(i) => format!("int({})", i),
-      PrimitiveValue::Float(f) => format!("float({})", f),
-      PrimitiveValue::Bool(b) => format!("bool({})", b)
+      Value::List(l) => l.get().class.get().to_string(),
+      Value::Int(i) => format!("int({})", i),
+      Value::Float(f) => format!("float({})", f),
+      Value::Bool(b) => format!("bool({})", b)
     }
   }
 }
 
-impl PrimitiveValue {
+impl Value {
   pub fn is_of_type(&self, t : &Type) -> bool {
     match self {
-      PrimitiveValue::Int(_) => *t == Type::Int,
-      PrimitiveValue::Float(_) => *t == Type::Float,
-      PrimitiveValue::Bool(_) => *t == Type::Bool
+      Value::List(list) => if let Type::Class(class) = t {
+        *class == list.get().class
+      } else {false},
+      Value::Int(_) => *t == Type::Int,
+      Value::Float(_) => *t == Type::Float,
+      Value::Bool(_) => *t == Type::Bool
     }
   }
 }

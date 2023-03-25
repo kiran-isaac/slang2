@@ -13,5 +13,8 @@ pub mod error;
 pub mod list;
 pub mod class_table;
 
-pub use list::{Class, ClassPtr, Pattern, List};
+pub use list::{Class, ClassPtr, Pattern, List, ListPtr};
 pub use class_table::ClassTable;
+
+#[cfg(test)]
+mod tests;

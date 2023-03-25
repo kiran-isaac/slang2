@@ -1,5 +1,5 @@
 use crate::types::Type;
-use std::ptr::NonNull;
+use std::ptr::{NonNull, eq};
 
 pub struct Pattern {
   pub types: Vec<Type>,
@@ -27,15 +27,27 @@ impl ClassPtr {
   }
 }
 
+impl PartialEq for ClassPtr {
+  fn eq(&self, other: &Self) -> bool {
+    eq(self.0.as_ptr(), other.0.as_ptr())
+  }
+}
+
 impl ToString for Pattern {
   fn to_string(&self) -> String {
     let mut s = String::new();
     if self.only {
-      s += "ONLY(";
+      s += "ONLY ";
     }
     for t in &self.types {
       s += &t.to_string();
     }
-    s + ")"
+    s
+  }
+}
+
+impl ToString for Class {
+  fn to_string(&self) -> String {
+    self.name.to_string() + "(" + &self.pattern.to_string() + ")"
   }
 }
