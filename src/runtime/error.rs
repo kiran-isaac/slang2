@@ -4,11 +4,13 @@ pub enum Error {
   TypeError(String)
 }
 
-pub fn throw(e : Error) {
-  match e {
-    Error::TypeError(e) => {
-      println!("Type Error: {}", e);
+impl Error {
+  pub fn throw(&self) {
+    match self {
+      Error::TypeError(e) => {
+        println!("Type Error: {}", e);
+      }
     }
+    exit(1);
   }
-  exit(1);
 }

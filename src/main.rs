@@ -1,14 +1,22 @@
-pub mod runtime;
-pub mod parser;
+mod runtime;
+mod parser;
 mod types;
 
-use runtime::list::{Class, Pattern};
 use types::Type;
+use runtime::{Class, List, ClassTable};
+use crate::runtime::list::class::class::Pattern;
+use crate::runtime::list::list::PrimitiveValue;
 
 fn main() {
-  let testPattern = Pattern {types : vec![Type::Int], only : false};
-  let test = Class::new("test".to_string(), Vec::new(), testPattern);
+  let test_class = Class {name : "Box(int)".to_string(), supers : vec![], pattern: Pattern { types: vec![Type::Int], only: true } };
 
-  let testPattern2 = Pattern {types : vec![Type::Int], only : false};
-  let test2 = Class::new("test".to_string(), Vec::new(), testPattern2);
+  let mut table = ClassTable::new();
+  table.add_class("".to_string(), test_class);
+
+  // A list has a reference to a class. A list is equivalent to an object, so calling List::new
+  // is basically just instantiation
+  let mut test_list = List::new(table.get_class("".to_string(), "Box(int)".to_string()).unwrap());
+
+  test_list.push_primitive(PrimitiveValue::Float(10));
+
 }

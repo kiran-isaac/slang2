@@ -9,8 +9,9 @@ need to model...
 the bask call list is just the *actual* call list though
 */
 
-pub mod heap;
-pub mod interpreter;
-pub mod bytecode;
 pub mod error;
 pub mod list;
+pub mod class_table;
+
+pub use list::{Class, List};
+pub use class_table::ClassTable;
