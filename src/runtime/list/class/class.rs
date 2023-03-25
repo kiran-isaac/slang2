@@ -1,4 +1,5 @@
 use crate::types::Type;
+use std::ptr::NonNull;
 
 pub struct Pattern {
   pub types: Vec<Type>,
@@ -10,6 +11,19 @@ pub struct Class {
   pub name: String,
   pub supers: Vec<String>,
   pub pattern: Pattern
+}
+
+#[derive(Clone, Copy)]
+pub struct ClassPtr (NonNull<Class>);
+
+impl ClassPtr {
+  pub fn new(class : &mut Class) -> Self {
+    Self(NonNull::new(class).unwrap())
+  }
+
+  pub fn get(&self) -> &Class {
+    unsafe { self.0.as_ref() }
+  }
 }
 
 impl ToString for Pattern {

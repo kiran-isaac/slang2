@@ -1,8 +1,8 @@
 use std::collections::HashMap;
-use crate::runtime::list::class::{Class};
+use crate::runtime::list::class::{ClassPtr, Class};
 
 pub struct ClassTable {
-  pub(crate) classes : HashMap<String, Class>
+  pub(crate) classes : HashMap<String, ClassPtr>
 }
 
 impl ClassTable {
@@ -12,11 +12,11 @@ impl ClassTable {
     }
   }
 
-  pub fn add_class(&mut self, namespace : String, class: Class) {
-      self.classes.insert(namespace + "." + &class.name, class);
+  pub fn add_class(&mut self, namespace : String, class: &mut Class) {
+      self.classes.insert(namespace + "." + &class.name, ClassPtr::new(class));
   }
 
-  pub fn get_class(&self, namespace : String, name : String) -> Option<&Class> {
-      self.classes.get(&(namespace + "." + &name))
+  pub fn get_class(&self, namespace : String, name : String) -> Option<ClassPtr> {
+    self.classes.get(&(namespace + "." + &name)).copied()
   }
 }
