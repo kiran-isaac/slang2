@@ -11,17 +11,11 @@ the bask call list is just the *actual* call list though
 
 pub mod error;
 pub mod list;
-pub mod symbol_table;
-mod interpreter;
+pub mod symtab;
+pub mod interpreter;
+pub mod namespace;
 
 #[cfg(test)]
 mod tests;
-mod namespace;
 
 pub use list::{Class, ClassPtr, Pattern, List, ListPtr, Value};
-
-// pub struct Runtime {
-//   class_table: ClassTable,
-//   focus : ListPtr,
-//   call_stack : Vec<ListPtr>
-// }

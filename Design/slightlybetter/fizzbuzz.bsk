@@ -1,0 +1,46 @@
+Range of Int can {
+  new(int n) {
+    focus Range this;
+
+    int i;
+    while (i < n) {
+      <- i;
+      i++;
+    }
+  }
+}
+
+String of char can {
+  compare(focus String this, String s) -> bool {
+    bool
+    for i in Range(size()) {
+      if ([i] != s[i]) {
+        return
+      }
+    }
+    return true
+  }
+}
+
+FizzBuzz of hidden (int | String) can {
+  push(focus default) {
+    int x <- size() - 1;
+
+    String s;
+    bool isInt <- true;
+    if (x % 3) {
+      s <- "Fizz"[...]
+    }
+    if (x % 5) {
+      s <- "Buzz"[...]
+    }
+
+    default <- isInt ? x : s;
+  }
+
+  get(int x) -> only (int | String) {
+    FizzBuzz.Segment() {
+
+  }
+}
+

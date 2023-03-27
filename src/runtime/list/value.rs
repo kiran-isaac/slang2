@@ -2,7 +2,7 @@ use crate::runtime::list::ListPtr;
 use crate::types::Type;
 
 /// A value that can be stored on a list.
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Debug)]
 #[allow(dead_code)]
 pub enum Value {
   List(ListPtr),

@@ -1,7 +1,7 @@
 use super::List;
 use std::ptr::{eq, NonNull};
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub struct ListPtr (NonNull<List>);
 
 // identical to the ClassPtr implementation, however having them separate

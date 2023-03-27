@@ -5,6 +5,7 @@ pub struct Signature {
   types: Vec<Type>,
 }
 
+#[allow(dead_code)]
 impl Signature {
   pub fn new(args: Vec<Type>) -> Self {
     Self { types: args }

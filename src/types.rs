@@ -2,6 +2,7 @@ use crate::runtime::{ClassPtr, list::Signature};
 
 /// A type that a value may have. Either an object with a class name, or a primitive type.
 #[derive(Clone, PartialEq)]
+#[allow(dead_code)]
 pub enum Type {
   Class(ClassPtr),
   Method(Signature),

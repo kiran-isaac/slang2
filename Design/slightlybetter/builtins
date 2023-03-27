@@ -1,0 +1,2 @@
+a -> b : will error
+a <- b, a = b : will override

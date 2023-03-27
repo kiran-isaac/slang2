@@ -1,0 +1,10 @@
+all methods of a class are static by default
+
+only the inbuilts are exceptions to the rule "everything is an object"
+
+Classes can be anonymous, and they will not be added to the symbol table
+
+Methods:
+  Parameters:
+    Exactly one parameter can be marked focus
+    format is : focus? Type name

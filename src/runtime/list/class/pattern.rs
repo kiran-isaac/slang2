@@ -1,5 +1,6 @@
 use crate::types::Type;
 
+#[derive(Clone)]
 pub struct Pattern {
   pub types: Vec<Type>,
   pub only: bool

@@ -6,6 +6,7 @@ pub use pattern::Pattern;
 pub use class_pointer::ClassPtr;
 
 /// A class that a list may be instantiated from
+#[derive(Clone)]
 pub struct Class {
   pub name: String,
   pub supers: Vec<String>,

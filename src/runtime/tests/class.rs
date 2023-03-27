@@ -17,7 +17,7 @@ pub fn class_to_string() {
   let c2 = ClassPtr::new(Class::anon_from_pattern(p2));
 
   let container = Class::anon_from_pattern(Pattern {
-    types: vec!(Type::Class(c1), Type::Class(c2)),
+    types: vec!(Type::Class(c1.clone()), Type::Class(c2.clone())),
     only: false
   });
 
