@@ -1,12 +1,10 @@
 mod pattern;
-mod class_pointer;
 
 use crate::types::Type;
 pub use pattern::Pattern;
-pub use class_pointer::ClassPtr;
 
 /// A class that a list may be instantiated from
-#[derive(Clone)]
+#[derive(Clone, PartialEq)]
 pub struct Class {
   pub name: String,
   pub supers: Vec<String>,

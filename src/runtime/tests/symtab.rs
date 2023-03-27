@@ -15,7 +15,7 @@ pub fn initial_symtab_test() {
   let result = symtab.get("a".to_string()).unwrap();
 
   if let Symbol::Type(Type::Class(class)) = result {
-    println!("Class: {}", class.get().to_string())
+    println!("Class: {}", class.to_string())
   } else {
     panic!("Expected class")
   }

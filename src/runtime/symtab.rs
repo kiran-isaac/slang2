@@ -1,6 +1,6 @@
 use std::collections::HashMap;
-use crate::runtime::list::class::{ClassPtr, Class};
-use crate::runtime::list::methods::MethodPtr;
+use crate::runtime::list::class::Class;
+use crate::runtime::list::methods::Method;
 use crate::runtime::Value;
 use crate::types::Type;
 
@@ -28,12 +28,12 @@ impl SymTab {
 #[allow(dead_code)]
 pub enum Symbol {
   Type(Type),
-  Function(MethodPtr),
+  Function(Box<Method>),
   Value(Value),
 }
 
 impl Symbol {
   pub fn from_class(class : Class) -> Self {
-    Symbol::Type(Type::Class(ClassPtr::new(class)))
+    Symbol::Type(Type::Class(Box::new(class)))
   }
 }

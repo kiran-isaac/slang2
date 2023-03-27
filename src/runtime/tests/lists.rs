@@ -33,8 +33,8 @@ pub fn recursive_list_structure() {
   let mut is_even_reversed = List::new_repeating_of(vec!(Type::Int, Type::Bool));
   is_even_reversed.take_end_segment(&mut is_even);
 
-  container.push(Value::List(ListPtr::new(is_even)));
-  container.push(Value::List(ListPtr::new(is_even_reversed)));
+  container.push(Value::List(Box::new(is_even)));
+  container.push(Value::List(Box::new(is_even_reversed)));
 
   println!("{}", container.to_string());
 

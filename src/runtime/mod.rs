@@ -18,4 +18,4 @@ pub mod namespace;
 #[cfg(test)]
 mod tests;
 
-pub use list::{Class, ClassPtr, Pattern, List, ListPtr, Value};
+pub use list::{Class, Pattern, List, Value};

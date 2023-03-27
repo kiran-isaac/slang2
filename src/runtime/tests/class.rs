@@ -1,4 +1,4 @@
-use crate::runtime::{Class, Pattern, ClassPtr};
+use crate::runtime::{Class, Pattern};
 use crate::types::Type;
 
 #[test]
@@ -13,16 +13,16 @@ pub fn class_to_string() {
     only: false
   };
 
-  let c1 = ClassPtr::new(Class::anon_from_pattern(p1));
-  let c2 = ClassPtr::new(Class::anon_from_pattern(p2));
+  let c1 = Box::new(Class::anon_from_pattern(p1));
+  let c2 = Box::new(Class::anon_from_pattern(p2));
 
   let container = Class::anon_from_pattern(Pattern {
     types: vec!(Type::Class(c1.clone()), Type::Class(c2.clone())),
     only: false
   });
 
-  assert_eq!(c1.get().to_string(), "{_ of (...)}");
-  assert_eq!(c2.get().to_string(), "{_ of (int, bool...)}");
+  assert_eq!(c1.to_string(), "{_ of (...)}");
+  assert_eq!(c2.to_string(), "{_ of (int, bool...)}");
 
   println!("{}", container.to_string());
 }

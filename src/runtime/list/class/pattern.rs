@@ -1,6 +1,6 @@
 use crate::types::Type;
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq)]
 pub struct Pattern {
   pub types: Vec<Type>,
   pub only: bool

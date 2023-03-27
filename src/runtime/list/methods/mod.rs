@@ -1,9 +1,8 @@
 mod signature;
-mod method_ptr;
 
 pub use signature::Signature;
-pub use method_ptr::MethodPtr;
 
+#[derive(Clone, PartialEq)]
 pub struct Method {
   pub name: String,
   pub signature: Signature,
