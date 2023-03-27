@@ -1,52 +1,42 @@
-use crate::runtime::*;
-use crate::runtime::list::list::Value;
+use crate::runtime::list::*;
 use crate::types::Type;
 
-fn init_testing_class_table() -> ClassTable {
-  let mut class_table = ClassTable::new();
-
-  let int_list = Class {name : "[int]".to_string(), supers : vec![], pattern : Pattern {
-      types: vec![Type::Int],
-      only: false
-  }};
-  let float_list = Class {name : "[float]".to_string(), supers : vec![], pattern : Pattern {
-      types: vec![Type::Float],
-      only: false
-  }};
-  let bool_list = Class {name : "[bool]".to_string(), supers : vec![], pattern : Pattern {
-      types: vec![Type::Bool],
-      only: false
-  }};
-  let char_list = Class {name : "[char]".to_string(), supers : vec![], pattern : Pattern {
-      types: vec![Type::Char],
-      only: false
-  }};
-
-  let is_even = Class {name : "IsEven".to_string(), supers : vec![], pattern : Pattern {
-      types: vec![Type::Int, Type::Bool],
-      only: false
-  }};
-
-  class_table.add_class("".to_string(), int_list);
-  class_table.add_class("".to_string(), float_list);
-  class_table.add_class("".to_string(), bool_list);
-  class_table.add_class("".to_string(), char_list);
-
-  class_table.add_class("".to_string(), is_even);
-
-  class_table
-}
-
 #[test]
-pub fn will_fail() {
-  let test_table = init_testing_class_table();
+pub fn take_frames_and_reverse() {
+  let mut is_even = List::new_repeating_of(vec!(Type::Int, Type::Bool));
 
-  let mut is_even = List::new(test_table.get_class("".to_string(), "IsEven".to_string()).unwrap());
   is_even.push(Value::Int(0));
   is_even.push(Value::Bool(true));
   is_even.push(Value::Int(1));
   is_even.push(Value::Bool(false));
 
-  let mut int_list = List::new(test_table.get_class("".to_string(), "[int]".to_string()).unwrap());
-  int_list.take(&mut is_even, 0, 1);
+  let mut is_even_reversed = List::new_repeating_of(vec!(Type::Int, Type::Bool));
+  is_even_reversed.take_end_segment(&mut is_even);
+  is_even_reversed.take_end_segment(&mut is_even);
+
+  assert_eq!(is_even.to_string(), "[]");
+  assert_eq!(is_even_reversed.to_string(), "[1, false, 0, true]");
+}
+
+#[test]
+pub fn recursive_list_structure() {
+  let mut container = List::new_repeating_of(vec!());
+
+  let mut is_even = List::new_repeating_of(vec!(Type::Int, Type::Bool));
+
+  // Reusing the ones from the last test bc why not
+  is_even.push(Value::Int(0));
+  is_even.push(Value::Bool(true));
+  is_even.push(Value::Int(1));
+  is_even.push(Value::Bool(false));
+
+  let mut is_even_reversed = List::new_repeating_of(vec!(Type::Int, Type::Bool));
+  is_even_reversed.take_end_segment(&mut is_even);
+
+  container.push(Value::List(ListPtr::new(is_even)));
+  container.push(Value::List(ListPtr::new(is_even_reversed)));
+
+  println!("{}", container.to_string());
+
+  assert_eq!(container.to_string(), "[[0, true], [1, false]]");
 }

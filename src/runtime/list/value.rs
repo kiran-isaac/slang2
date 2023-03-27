@@ -1,4 +1,4 @@
-use crate::runtime::list::list::ListPtr;
+use crate::runtime::list::ListPtr;
 use crate::types::Type;
 
 /// A value that can be stored on a list.
@@ -14,10 +14,10 @@ pub enum Value {
 impl ToString for Value {
   fn to_string(&self) -> String {
     match self {
-      Value::List(l) => l.get().class.get().to_string(),
-      Value::Int(i) => format!("int({})", i),
-      Value::Float(f) => format!("float({})", f),
-      Value::Bool(b) => format!("bool({})", b)
+      Value::List(l) => l.get().to_string(),
+      Value::Int(i) => format!("{}", i),
+      Value::Float(f) => format!("{}", f),
+      Value::Bool(b) => format!("{}", b)
     }
   }
 }

@@ -1,0 +1,15 @@
+-- Information
+BSK1.00
+
+-- Dependancy table
+// Load the class table for all dependancies
+1: IO
+
+-- Class Table
+1: class Y of Y (Accept 1):
+      pattern (Y)
+      3 methods
+
+-- Type Table
+// Class table entry 1 is looked up, then another type consumed
+1: String = 1
