@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 use crate::runtime::list::class::Class;
-use crate::runtime::list::methods::Method;
+use crate::runtime::list::methods::{Method, MethodBody};
+use crate::runtime::list::methods::inbuilt::*;
 use crate::runtime::Value;
 use crate::types::Type;
 
@@ -18,6 +19,12 @@ impl SymTab {
     new.insert("bool".to_string(), Symbol::Type(Type::Bool));
     new.insert("char".to_string(), Symbol::Type(Type::Char));
     new.insert("float".to_string(), Symbol::Type(Type::Float));
+
+    new.insert("add#int->int".to_string(), Symbol::Function(Box::new(Method {
+      name: "add".to_string(),
+      signature: vec!(Type::Int, Type::Int, Type::Int),
+      body: MethodBody::Inbuilt(add_int_int_int),
+    })));
     new
   }
 

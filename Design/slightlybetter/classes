@@ -4,6 +4,9 @@ only the inbuilts are exceptions to the rule "everything is an object"
 
 Classes can be anonymous, and they will not be added to the symbol table
 
+Pattern:
+  Union, Functions, classes or inbuilts. Can be only or no. Can be * for any, and _ for none
+
 Methods:
   Parameters:
     Exactly one parameter can be marked focus

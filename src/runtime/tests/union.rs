@@ -7,6 +7,4 @@ pub fn test() {
 
   l1.push(Value::Int(5));
   l1.push(Value::Bool(true));
-
-  println!("{}", l1.class.to_string());
 }

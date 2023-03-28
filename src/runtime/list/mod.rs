@@ -2,6 +2,7 @@ pub mod value;
 pub mod class;
 pub mod methods;
 
+use std::io::Result;
 pub use value::Value;
 pub use class::*;
 pub use methods::Signature;
@@ -52,7 +53,7 @@ impl List {
 
   /// Creates a list a list with a single pattern of the given types
   pub fn new_single_of(pattern: Vec<Type>) -> List {
-    List::new(Box::new(Class::anon_from_pattern(Pattern {types : pattern, only : true})))
+    List::new(Box::new(Class::anon_from_pattern(Pattern {types : pattern, pattern_type : PatternType::Only})))
   }
 
   /// Creates a list with with a repeating pattern of any type
@@ -65,12 +66,12 @@ impl List {
     List::new_single_of(vec!())
   }
 
-  pub fn insert(&mut self, val: Value, index: usize) {
-    if self.class.pattern.types.len() != 0 {
-
-    }
-    self.val.insert(index, val);
-  }
+  // pub fn insert(&mut self, val: Value, index: usize) {
+  //   if self.class.pattern.types.len() != 0 {
+  //
+  //   }
+  //   self.val.insert(index, val);
+  // }
 
   pub fn push(&mut self, val: Value) {
     // If the list has a pattern, verify that the value matches the pattern
@@ -78,7 +79,7 @@ impl List {
       // If the list is full, verify that it is not an only pattern
       // Otherwise, reset the accepting index
       if self.accepting == self.class.pattern.types.len() {
-        if self.class.pattern.only {
+        if self.class.pattern.pattern_type == PatternType::Only {
           Error::TypeError(format!("Trying to push primitive value {} to FULL object with pattern {} values", val.to_string(), self.class.pattern.to_string())).throw();
         } else {
           self.accepting = 0;

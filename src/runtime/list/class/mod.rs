@@ -1,7 +1,7 @@
 mod pattern;
 
 use crate::types::Type;
-pub use pattern::Pattern;
+pub use pattern::{Pattern, PatternType};
 
 /// A class that a list may be instantiated from
 #[derive(Clone, PartialEq)]
@@ -15,7 +15,7 @@ impl Class {
   pub fn anon_from_types(of : Vec<Type>) -> Self {
     let pattern = Pattern {
       types: of,
-      only: false
+      pattern_type: PatternType::Repeating
     };
     Class {
       name: "".to_string(),

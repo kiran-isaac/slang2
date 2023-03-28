@@ -1,0 +1,79 @@
+int:
+  add
+    int -> float -> float
+    int -> int -> int
+  sub
+    int -> float -> float
+    int -> int -> int
+  mul
+    int -> float -> float
+    int -> int -> int
+  div
+    int -> float -> float
+    int -> int -> int
+  mod
+    int -> int -> int
+  eq
+    int -> int -> bool
+  lt
+    int -> int -> bool
+    int -> float -> bool
+  le
+    int -> int -> bool
+    int -> float -> bool
+  gt
+    int -> int -> bool
+    int -> float -> bool
+  ge
+    int -> int -> bool
+    int -> float -> bool
+  to
+    int -> float
+    int -> bool
+
+float:
+  add
+    float -> int -> float
+    float -> float -> float
+  sub
+    float -> int -> float
+    float -> float -> float
+  mul
+    float -> int -> float
+    float -> float -> float
+  div
+    float -> int -> float
+    float -> float -> float
+  eq
+    float -> float -> bool
+  lt
+    float -> int -> bool
+    float -> float -> bool
+  le
+    float -> int -> bool
+    float -> float -> bool
+  gt
+    float -> int -> bool
+    float -> float -> bool
+  ge
+    float -> int -> bool
+    float -> float -> bool
+  to
+    float -> int
+    float -> bool
+
+bool:
+  and
+    bool -> bool -> bool
+  or
+    bool -> bool -> bool
+  not
+    bool -> bool
+  eq
+    bool -> bool -> bool
+
+char:
+  eq
+    char -> char -> bool
+  to
+    char -> int

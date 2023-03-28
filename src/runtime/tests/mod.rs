@@ -5,3 +5,4 @@ mod methods;
 mod symtab;
 mod namespace;
 mod union;
+mod fizzbuzz;
