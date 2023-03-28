@@ -8,7 +8,8 @@ pub enum Value {
   List(Box<List>),
   Int(i64),
   Float(f64),
-  Bool(bool)
+  Bool(bool),
+  Char(char)
 }
 
 impl ToString for Value {
@@ -17,20 +18,8 @@ impl ToString for Value {
       Value::List(l) => l.to_string(),
       Value::Int(i) => format!("{}", i),
       Value::Float(f) => format!("{}", f),
-      Value::Bool(b) => format!("{}", b)
-    }
-  }
-}
-
-impl Value {
-  pub fn is_of_type(&self, t : &Type) -> bool {
-    match self {
-      Value::List(list) => if let Type::Class(class) = t {
-        *class == list.class
-      } else {false},
-      Value::Int(_) => *t == Type::Int,
-      Value::Float(_) => *t == Type::Float,
-      Value::Bool(_) => *t == Type::Bool
+      Value::Bool(b) => format!("{}", b),
+      Value::Char(c) => format!("{}", c)
     }
   }
 }

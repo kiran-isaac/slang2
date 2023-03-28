@@ -87,7 +87,7 @@ impl List {
 
       // Verify that the pattern matches. This only needs to be checked for the value pushed
       let expect = &self.class.pattern.types[self.accepting.clone()];
-      if !val.is_of_type(expect) {
+      if !expect.is_of_type(&val) {
         Error::TypeError(format!("Trying to push value {} to object with pattern {} values", val.to_string(), self.class.pattern.to_string())).throw();
       }
 
@@ -104,7 +104,7 @@ impl List {
       if i >= self.val.len() { break; };
       let expect = &self.class.pattern.types[i % self.class.pattern.types.len()];
       let got = &self.val[i];
-      if !got.is_of_type(expect) {
+      if expect.is_of_type(got) {
         if start == end {
           Error::TypeError(format!("Removing element {} from a '{}' with pattern {} causes a pattern mismatch. Try peeking, or removing a whole segment"
                                    , start, self.class.name, self.class.pattern.to_string())).throw();

@@ -10,17 +10,48 @@ pub struct SymTab {
 
 impl SymTab {
   pub fn new() -> Self {
-    Self {
+    let mut new = Self {
       table: HashMap::new()
-    }
+    };
+
+    new.insert("int".to_string(), Symbol::Type(Type::Int));
+    new.insert("bool".to_string(), Symbol::Type(Type::Bool));
+    new.insert("char".to_string(), Symbol::Type(Type::Char));
+    new.insert("float".to_string(), Symbol::Type(Type::Float));
+    new
   }
 
-  pub fn insert(&mut self, name : String, sym : Symbol) {
+  pub fn insert(&mut self, name : String, sym : Symbol) -> bool {
+    if self.table.contains_key(&name) {
+      return false;
+    }
     self.table.insert(name, sym);
+    true
   }
 
   pub fn get(&self, name : String) -> Option<&Symbol> {
     self.table.get(&name)
+  }
+
+  pub fn get_type(&self, name : String) -> Option<&Type> {
+    match self.get(name) {
+      Some(Symbol::Type(t)) => Some(t),
+      _ => None
+    }
+  }
+
+  pub fn get_class(&self, name : String) -> Option<&Class> {
+    match self.get(name) {
+      Some(Symbol::Type(Type::Class(c))) => Some(c),
+      _ => None
+    }
+  }
+
+  pub fn get_function(&self, name : String) -> Option<&Method> {
+    match self.get(name) {
+      Some(Symbol::Function(m)) => Some(m),
+      _ => None
+    }
   }
 }
 

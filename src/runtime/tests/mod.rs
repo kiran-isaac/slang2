@@ -4,3 +4,4 @@ mod class;
 mod methods;
 mod symtab;
 mod namespace;
+mod union;

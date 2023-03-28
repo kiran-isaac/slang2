@@ -1,4 +1,4 @@
-use crate::runtime::{Class};
+use crate::runtime::{Class, Value};
 use crate::runtime::symtab::*;
 use crate::types::Type;
 
@@ -19,4 +19,16 @@ pub fn initial_symtab_test() {
   } else {
     panic!("Expected class")
   }
+}
+
+#[test]
+pub fn builtin_types_test() {
+  let mut symtab = SymTab::new();
+
+  let int_type = symtab.get("int".to_string());
+  if int_type.is_none() {
+    panic!("Expected int type");
+  }
+
+  assert!(symtab.insert("x".to_string(), Symbol::Value(Value::Int(5))))
 }
