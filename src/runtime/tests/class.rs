@@ -23,6 +23,5 @@ pub fn class_to_string() {
 
   assert_eq!(c1.to_string(), "{_ of (...)}");
   assert_eq!(c2.to_string(), "{_ of (int, bool...)}");
-
-  println!("{}", container.to_string());
+  assert_eq!(container.to_string(), "{_ of ({_ of (...)}, {_ of (int, bool...)}...)}")
 }

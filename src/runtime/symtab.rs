@@ -1,9 +1,10 @@
 use std::collections::HashMap;
 use crate::runtime::list::class::Class;
-use crate::runtime::list::methods::{Method, MethodBody};
-use crate::runtime::list::methods::inbuilt::*;
+use crate::runtime::list::methods::{Method, MethodBody, inbuilt};
 use crate::runtime::Value;
 use crate::types::Type;
+
+use super::list::Signature;
 
 pub struct SymTab {
   table: HashMap<String, Symbol>
@@ -20,11 +21,22 @@ impl SymTab {
     new.insert("char".to_string(), Symbol::Type(Type::Char));
     new.insert("float".to_string(), Symbol::Type(Type::Float));
 
-    new.insert("add#int->int".to_string(), Symbol::Function(Box::new(Method {
+    new.insert("add#int->int->int".to_string(), Symbol::Function(Box::new(Method {
       name: "add".to_string(),
       signature: vec!(Type::Int, Type::Int, Type::Int),
-      body: MethodBody::Inbuilt(add_int_int_int),
+      body: MethodBody::Inbuilt(inbuilt::add_int_int_int),
+      of: Some(Type::Int)
     })));
+
+    new.insert("add#int->float->float".to_string(), Symbol::Function(Box::new(Method {
+      name: "add".to_string(),
+      signature: vec!(Type::Int, Type::Float, Type::Float),
+      body: MethodBody::Inbuilt(inbuilt::add_int_float_float),
+      of: Some(Type::Int)
+    })));
+
+    Method::inbuilt_from_func_pointer("add", Signature::new(vec!(Type::Int)), inbuilt::add_int_int_int);
+
     new
   }
 

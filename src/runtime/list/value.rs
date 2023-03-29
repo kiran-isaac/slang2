@@ -1,5 +1,4 @@
 use crate::runtime::list::List;
-use crate::types::Type;
 
 /// A value that can be stored on a list.
 #[derive(Clone, PartialEq)]

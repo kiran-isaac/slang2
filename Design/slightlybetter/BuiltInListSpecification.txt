@@ -1,13 +1,14 @@
 The internal list that all classes are made from should have the following 3 operations:
   1. Take
   2. Insert
-  3. Peek
+  3. Slice
+  4. Size
 
 <- : Take
   Definately:
   a <- [i] : would remove the ith item from focus and put it into the object a
   a <- [i, j] : would remove the ith to jth and from focus place them on the object a
-  
+
   Maybe:
   a <- : Top value from focus is removed and put on a
   a <- [..] : All values from focus are removed and put on a. Not sure how I feel about the syntax
@@ -20,11 +21,15 @@ The internal list that all classes are made from should have the following 3 ope
   Maybe:
   a -> [i, j] : takes j-i items from the top of a and puts them onto focus
 
-= : Peek (Like take but obviously does not mutate focus. Perhaps dont use equals)
+[i, j] : Slice : Returns a new list containing the ith to jth items from focus
   Definately:
-    a = : the top value from focus is copied and put on a
-    a = [i] : the ith value from focus is copied and put on a
-    a = [i, j] : the ith to jth values from focus are copied and put on a
+  a = [i..j] : returns a new list containing the ith to jth items from focus
+               if i or j are negative then theyre from the end. i must be less than j
+  a = [i..]
+  a = [..j]
+  a = [i] : returns a new list containing ONLY the ith item from focus
+            if i is negative, it counts from the end of the list. So -1 is the
+            last item
+  a = [..] : returns a new list containing all items from focus
 
-  Maybe:
-    a = [..] : all values from focus are copied and put on a. Also not sure how I feel about the syntax
+size(): Size : Returns the number of items in focus

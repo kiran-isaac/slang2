@@ -1,16 +1,7 @@
-use std::process::exit;
+use std::fmt::{Debug};
 
+#[derive(Debug)]
 pub enum Error {
-  TypeError(String)
-}
-
-impl Error {
-  pub fn throw(&self) {
-    match self {
-      Error::TypeError(e) => {
-        println!("Type Error: {}", e);
-      }
-    }
-    exit(1);
-  }
+  TypeError(String),
+  SliceError(String)
 }

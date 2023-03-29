@@ -1,4 +1,6 @@
 mod signature;
+
+#[allow(dead_code)]
 pub mod inbuilt;
 
 pub use signature::Signature;
@@ -9,18 +11,22 @@ use crate::types::Type;
 pub struct Method {
   pub name: String,
   pub signature: Vec<Type>,
-  pub of: Option<Box<Class>>,
+  pub of: Option<Type>,
   pub body : MethodBody
 }
 
 impl Method {
-  pub fn new(name : String, signature : Vec<Type>, of : Option<Box<Class>>, body : MethodBody) -> Self {
+  pub fn new(name : String, signature : Vec<Type>, of : Option<Type>, body : MethodBody) -> Self {
     Self {
       name,
       signature,
       of,
       body
     }
+  }
+
+  pub fn inbuilt_from_func_pointer(name : &str, signature : Signature, f : fn(Value, Value) -> Value) {
+    
   }
 }
 

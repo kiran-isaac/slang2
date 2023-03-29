@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use crate::runtime::{Class, list::Signature, Value};
 
 /// A type that a value may have. Either an object with a class name, or a primitive type.
